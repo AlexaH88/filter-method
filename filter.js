@@ -21,6 +21,12 @@ const people = [
   },
 ];
 
+const oldEnough = people.filter(person => person.age >= 21);
+console.log(oldEnough);
+
+// const paul = people.filter(person => person.name === "Paul"); // my version
+const paul = people.filter(p => p.name === "Paul")[0]; // simplified even more and removes the array brackets
+console.log(paul);
 
 // Complex Filtering
 const students = [
@@ -55,3 +61,20 @@ const students = [
     ]
   },
 ];
+
+// initial solution
+// const candidates = students.filter(student => {
+//   let strongSkills = student.skills.filter(skill => skill.yrsExperience >=5);
+//   return strongSkills.length > 0;
+// });
+// console.log(candidates);
+
+// simplified solution
+const has5yearsExp = skill => skill.yrsExperience >=5;
+const hasStrongSkills = student => student.skills.filter(has5yearsExp).length > 0;
+const candidates = students.filter(hasStrongSkills);
+console.log(candidates);
+
+// show candidate names only
+const names = candidates.map(student => student.name);
+console.log(names);
